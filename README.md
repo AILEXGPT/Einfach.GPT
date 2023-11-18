@@ -1,157 +1,109 @@
-# 🔒 PrivateGPT 📑
+# 🔒 Einfach.PGPT 📑
 
-> Install & usage docs: https://docs.privategpt.dev/
+> Installations- und Nutzungsdokumentation: https://docs.privategpt.dev/
 > 
-> Join the community: [Twitter](https://twitter.com/PrivateGPT_AI) & [Discord](https://discord.gg/bK6mRVpErU)
+> Tritt der Community bei: [Twitter](https://twitter.com/PrivateGPT_AI) & [Discord](https://discord.gg/bK6mRVpErU)
 
+![Demo](https://lh3.googleusercontent.com/drive-viewer/AK7aPaBasLxbp49Hrwnmi_Ctii1oIM18nFJrBO0ERSE3wpkS-syjiQBE32_tUSdqnjn6etUDjUSkdJeFa8acqRb0lZbkZ6CyAw=s1600)
 
-<img width="900"  alt="demo" src="https://lh3.googleusercontent.com/drive-viewer/AK7aPaBasLxbp49Hrwnmi_Ctii1oIM18nFJrBO0ERSE3wpkS-syjiQBE32_tUSdqnjn6etUDjUSkdJeFa8acqRb0lZbkZ6CyAw=s1600">
+Einfach.PGPT ist ein produktionsbereites KI-Projekt, das es dir ermöglicht, Fragen zu deinen Dokumenten mithilfe der Kraft von Großen Sprachmodellen (LLMs) zu stellen, auch in Szenarien ohne Internetverbindung. 100% privat, keine Daten verlassen deine Ausführungsumgebung zu irgendeinem Zeitpunkt.
 
-PrivateGPT is a production-ready AI project that allows you to ask questions about your documents using the power
-of Large Language Models (LLMs), even in scenarios without an Internet connection. 100% private, no data leaves your
-execution environment at any point.
+Das Projekt bietet eine API, die alle Grundlagen bietet, um private, kontextbewusste KI-Anwendungen zu erstellen. Es folgt und erweitert den [OpenAI API-Standard](https://openai.com/blog/openai-api) und unterstützt sowohl normale als auch Streaming-Antworten.
 
-The project provides an API offering all the primitives required to build private, context-aware AI applications.
-It follows and extends the [OpenAI API standard](https://openai.com/blog/openai-api),
-and supports both normal and streaming responses.
+Die API ist in zwei logische Blöcke unterteilt:
 
-The API is divided into two logical blocks:
+**High-Level-API**, die die gesamte Komplexität einer RAG (Retrieval Augmented Generation) Pipeline-Implementierung abstrahiert:
+- Einlesen von Dokumenten: internes Verwalten von Dokumenten-Parsing, Aufteilung, Metadatenextraktion, Erzeugung von Einbettungen und Speicherung.
+- Chat & Vervollständigungen unter Verwendung von Kontext aus eingelesenen Dokumenten: Abstraktion der Kontexterfassung, der Prompt-Engineering und der Antwortgenerierung.
 
-**High-level API**, which abstracts all the complexity of a RAG (Retrieval Augmented Generation)
-pipeline implementation:
-- Ingestion of documents: internally managing document parsing,
-splitting, metadata extraction, embedding generation and storage.
-- Chat & Completions using context from ingested documents:
-abstracting the retrieval of context, the prompt engineering and the response generation.
+**Low-Level-API**, die es fortgeschrittenen Benutzern ermöglicht, ihre eigenen komplexen Pipelines zu implementieren:
+- Erzeugung von Einbettungen: basierend auf einem Textstück.
+- Kontextbezogene Chunks-Abruf: Bei einer Anfrage werden die relevantesten Textabschnitte aus den eingelesenen Dokumenten zurückgegeben.
 
-**Low-level API**, which allows advanced users to implement their own complex pipelines:
-- Embeddings generation: based on a piece of text.
-- Contextual chunks retrieval: given a query, returns the most relevant chunks of text from the ingested documents.
+Zusätzlich dazu wird ein funktionierender [Gradio UI](https://www.gradio.app/) Client bereitgestellt, um die API zu testen, zusammen mit einer Reihe nützlicher Tools wie Bulk-Model-Download-Skript, Einleseskript, Dokumentenordner-Überwachung usw.
 
-In addition to this, a working [Gradio UI](https://www.gradio.app/)
-client is provided to test the API, together with a set of useful tools such as bulk model
-download script, ingestion script, documents folder watch, etc.
+> 👂 **Brauchst du Hilfe bei der Anwendung von Einfach.PGPT für deinen spezifischen Anwendungsfall?**
+> [Lass es uns wissen](https://forms.gle/4cSDmH13RZBHV9at7) und wir werden versuchen zu helfen! Wir verfeinern Einfach.PGPT durch dein Feedback.
 
-> 👂 **Need help applying PrivateGPT to your specific use case?**
-> [Let us know more about it](https://forms.gle/4cSDmH13RZBHV9at7)
-> and we'll try to help! We are refining PrivateGPT through your feedback.
+## 🎞️ Überblick
+HAFTUNGSAUSSCHLUSS: Diese README wird nicht so häufig aktualisiert wie die [Dokumentation](https://docs.privategpt.dev/). Bitte schaue dort nach den neuesten Updates!
 
-## 🎞️ Overview
-DISCLAIMER: This README is not updated as frequently as the [documentation](https://docs.privategpt.dev/).
-Please check it out for the latest updates!
+### Motivation hinter Einfach.PGPT
+Generative KI ist ein Game-Changer für unsere Gesellschaft, aber die Einführung in Unternehmen aller Größen und datensensiblen Bereichen wie Gesundheitswesen oder Recht ist durch eine klare Sorge begrenzt: **Privatsphäre**. Nicht sicherstellen zu können, dass deine Daten vollständig unter deiner Kontrolle sind, wenn du KI-Tools von Drittanbietern verwendest, ist ein Risiko, das diese Branchen nicht eingehen können.
 
-### Motivation behind PrivateGPT
-Generative AI is a game changer for our society, but adoption in companies of all sizes and data-sensitive
-domains like healthcare or legal is limited by a clear concern: **privacy**.
-Not being able to ensure that your data is fully under your control when using third-party AI tools
-is a risk those industries cannot take.
+### Urversion
+Die erste Version von Einfach.PGPT wurde im Mai 2023 als neuartiger Ansatz eingeführt, um die Datenschutzbedenken anzugehen, indem LLMs auf eine vollständig offline Weise verwendet wurden. Dies wurde durch die Nutzung bestehender Technologien erreicht, die von der florierenden Open-Source-KI-Gemeinschaft entwickelt wurden: [LangChain](https://github.com/hwchase17/langchain), [LlamaIndex](https://www.llamaindex.ai/), [GPT4All](https://github.com/nomic-ai/gpt4all), [LlamaCpp](https://github.com/ggerganov/llama.cpp), [Chroma](https://www.trychroma.com/) und [SentenceTransformers](https://www.sbert.net/).
 
-### Primordial version
-The first version of PrivateGPT was launched in May 2023 as a novel approach to address the privacy
-concerns by using LLMs in a complete offline way.
-This was done by leveraging existing technologies developed by the thriving Open Source AI community:
-[LangChain](https://github.com/hwchase17/langchain), [LlamaIndex](https://www.llamaindex.ai/),
-[GPT4All](https://github.com/nomic-ai/gpt4all),
-[LlamaCpp](https://github.com/ggerganov/llama.cpp),
-[Chroma](https://www.trychroma.com/)
-and [SentenceTransformers](https://www.sbert.net/).
+Diese Version, die schnell zu einem Go-to-Projekt für datenschutzsensible Setups wurde und als Grundlage für Tausende von lokal fokussierten generativen KI-Projekten diente, war der Grundstein dessen, was Einfach.PGPT heutzutage wird; also eine einfachere und lehrreichere Implementierung, um die grundlegenden Konzepte zu verstehen, die erforderlich sind, um ein vollständig lokales - und daher privates - ChatGPT-ähnliches Tool zu erstellen.
 
-That version, which rapidly became a go-to project for privacy-sensitive setups and served as the seed
-for thousands of local-focused generative AI projects, was the foundation of what PrivateGPT is becoming nowadays;
-thus a simpler and more educational implementation to understand the basic concepts required
-to build a fully local -and therefore, private- chatGPT-like tool.
+Wenn du weiterhin damit experimentieren möchtest, haben wir es im [primordial branch](https://github.com/imartinez/privateGPT/tree/primordial) des Projekts gespeichert.
 
-If you want to keep experimenting with it, we have saved it in the
-[primordial branch](https://github.com/imartinez/privateGPT/tree/primordial) of the project.
+> Es wird dringend empfohlen, eine saubere Klonung und Installation dieser neuen Version von Einfach.PGPT durchzuführen, wenn du von der vorherigen, urzeitlichen Version kommst.
 
-> It is strongly recommended to do a clean clone and install of this new version of
-PrivateGPT if you come from the previous, primordial version.
+### Gegenwart und Zukunft von Einfach.PGPT
+Einfach.PGPT entwickelt sich nun zu einem Gateway für generative KI-Modelle und Grundbausteine, einschließlich Vervollständigungen, Dokumenteneinlesung, RAG-Pipelines und anderen Low-Level-Bausteinen. Wir möchten es jedem Entwickler erleichtern, KI-Anwendungen und -Erfahrungen zu erstellen, sowie eine geeignete umfangreiche Architektur für die Community bereitstellen, um weiter beizutragen.
 
-### Present and Future of PrivateGPT
-PrivateGPT is now evolving towards becoming a gateway to generative AI models and primitives, including
-completions, document ingestion, RAG pipelines and other low-level building blocks.
-We want to make it easier for any developer to build AI applications and experiences, as well as provide
-a suitable extensive architecture for the community to keep contributing.
+Bleibe auf dem Laufenden mit unseren [Veröffentlichungen](https://github.com/imartinez/privateGPT/releases), um alle neuen Funktionen und Änderungen zu sehen.
 
-Stay tuned to our [releases](https://github.com/imartinez/privateGPT/releases) to check out all the new features and changes included.
+## 📄 Dokumentation
+Die vollständige Dokumentation zu Installation, Abhängigkeiten, Konfiguration, Serverbetrieb, Bereitstellungsoptionen, Einlesen lokaler Dokumente, API-Details und UI-Funktionen findest du hier: https://docs.privategpt.dev/
 
-## 📄 Documentation
-Full documentation on installation, dependencies, configuration, running the server, deployment options,
-ingesting local documents, API details and UI features can be found here: https://docs.privategpt.dev/
+## 🧩 Architektur
+Konzeptionell ist Einfach.PGPT eine API, die eine RAG-Pipeline umschließt und deren Grundbausteine freilegt.
+* Die API wurde mit [FastAPI](https://fastapi.tiangolo.com/) erstellt und folgt dem [API-Schema von OpenAI](https://platform.openai.com/docs/api-reference).
+* Die RAG-Pipeline basiert auf [LlamaIndex](https://www.llamaindex.ai/).
 
-## 🧩 Architecture
-Conceptually, PrivateGPT is an API that wraps a RAG pipeline and exposes its
-primitives.
-* The API is built using [FastAPI](https://fastapi.tiangolo.com/) and follows
-  [OpenAI's API scheme](https://platform.openai.com/docs/api-reference).
-* The RAG pipeline is based on [LlamaIndex](https://www.llamaindex.ai/).
+Das Design von Einfach.PGPT ermöglicht es, sowohl die API als auch die RAG-Implementierung leicht zu erweitern und anzupassen. Einige wichtige architektonische Entscheidungen sind:
+* Dependency Injection, Entkopplung der verschiedenen Komponenten und Schichten.
+* Verwendung von LlamaIndex-Abstraktionen wie `LLM`, `BaseEmbedding` oder `VectorStore`, was es sofort ermöglicht, die tatsächlichen Implementierungen dieser Abstraktionen zu ändern.
+* Einfachheit, so wenige Schichten und neue Abstraktionen wie möglich hinzuzufügen.
+* Einsatzbereit, Bereitstellung einer vollständigen Implementierung der API und RAG-Pipeline.
 
-The design of PrivateGPT allows to easily extend and adapt both the API and the
-RAG implementation. Some key architectural decisions are:
-* Dependency Injection, decoupling the different components and layers.
-* Usage of LlamaIndex abstractions such as `LLM`, `BaseEmbedding` or `VectorStore`,
-  making it immediate to change the actual implementations of those abstractions.
-* Simplicity, adding as few layers and new abstractions as possible.
-* Ready to use, providing a full implementation of the API and RAG
-  pipeline.
+Hauptbausteine:
+* APIs sind in `private_gpt:server:<api>` definiert. Jedes Paket enthält eine `<api>_router.py` (FastAPI-Schicht) und eine `<api>_service.py` (die Service-Implementierung). Jeder *Service* verwendet LlamaIndex-Basisabstraktionen anstelle von spezifischen Implementierungen, wodurch die tatsächliche Implementierung von ihrer Nutzung entkoppelt wird.
+* Komponenten befinden sich in `private_gpt:components:<component>`. Jede *Komponente* ist dafür verantwortlich, tatsächliche Implementierungen für die Basisabstraktionen bereitzustellen, die in den Services verwendet werden - zum Beispiel ist `LLMComponent` dafür verantwortlich, eine tatsächliche Implementierung eines `LLM` bereitzustellen (zum Beispiel `LlamaCPP` oder `OpenAI`).
 
-Main building blocks:
-* APIs are defined in `private_gpt:server:<api>`. Each package contains an
-  `<api>_router.py` (FastAPI layer) and an `<api>_service.py` (the
-  service implementation). Each *Service* uses LlamaIndex base abstractions instead
-  of specific implementations,
-  decoupling the actual implementation from its usage.
-* Components are placed in
-  `private_gpt:components:<component>`. Each *Component* is in charge of providing
-  actual implementations to the base abstractions used in the Services - for example
-  `LLMComponent` is in charge of providing an actual implementation of an `LLM`
-  (for example `LlamaCPP` or `OpenAI`).
+## 💡 Mitwirken
+Beiträge sind willkommen! Um die Codequalität zu gewährleisten, haben wir mehrere Format- und Typisierungsprüfungen aktiviert, führe einfach `make check` vor dem Commit durch, um sicherzustellen, dass dein Code in Ordnung ist. Denke daran, deinen Code zu testen! Du findest einen Testordner mit Hilfsmitteln, und du kannst Tests mit dem Befehl `make test` ausführen.
 
-## 💡 Contributing
-Contributions are welcomed! To ensure code quality we have enabled several format and
-typing checks, just run `make check` before committing to make sure your code is ok.
-Remember to test your code! You'll find a tests folder with helpers, and you can run
-tests using `make test` command.
+Interessiert daran, zu Einfach.PGPT beizutragen? Wir haben die folgenden Herausforderungen vor uns, falls du helfen möchtest:
 
-Interested in contributing to PrivateGPT? We have the following challenges ahead of us in case
-you want to give a hand:
+### Verbesserungen
+- Bessere RAG-Pipeline-Implementierung (Verbesserungen sowohl in den Indexierungs- als auch in den Abfragephasen)
+- Code-Dokumentation
+- Exposition von Ausführungsparametern wie top_p, Temperatur, max_tokens... in Vervollständigungen und Chat-Vervollständigungen
+- Exposition der Chunk-Größe in der Ingest-API
+- Implementierung von Update und Delete-Dokument in der Ingest-API
+- Hinzufügen von Informationen über den Tokenverbrauch in jeder Antwort
+- Hinzufügen zu den Vervollständigungs-APIs (Chat und Vervollständigung) der Kontextdokumente, die zur Beantwortung der Frage verwendet wurden
+- Im "Modell"-Feld den tatsächlichen Namen des LLM- oder Einbettungsmodells zurückgeben
 
-### Improvements
-- Better RAG pipeline implementation (improvements to both indexing and querying stages)
-- Code documentation
-- Expose execution parameters such as top_p, temperature, max_tokens... in Completions and Chat Completions
-- Expose chunk size in Ingest API
-- Implement Update and Delete document in Ingest API
-- Add information about tokens consumption in each response
-- Add to Completion APIs (chat and completion) the context docs used to answer the question
-- In “model” field return the actual LLM or Embeddings model name used
+### Funktionen
+- Implementierung eines Concurrency-Locks, um Fehler zu vermeiden, wenn es mehrere Aufrufe des lokalen LlamaCPP-Modells gibt
+- API-Schlüssel-basierte Anforderungskontrolle zur API
+- Unterstützung für Sagemaker
+- Unterstützung von Funktionsaufrufen
+- Hinzufügen von md5, um bereits eingelesene Dateien zu überprüfen
+- Auswahl eines Dokuments zur Abfrage in der UI
+- Bessere Beobachtbarkeit der RAG-Pipeline
 
-### Features
-- Implement concurrency lock to avoid errors when there are several calls to the local LlamaCPP model
-- API key-based request control to the API
-- Support for Sagemaker
-- Support Function calling
-- Add md5 to check files already ingested
-- Select a document to query in the UI
-- Better observability of the RAG pipeline
-
-### Project Infrastructure
-- Packaged version as a local desktop app (windows executable, mac app, linux app)
-- Dockerize the application for platforms outside linux (Docker Desktop for Mac and Windows)
-- Document how to deploy to AWS, GCP and Azure.
+### Projektinfrastruktur
+- Verpackte Version als lokale Desktop-App (Windows-Exe, Mac-App, Linux-App)
+- Dockerisierung der Anwendung für Plattformen außerhalb von Linux (Docker Desktop für Mac und Windows)
+- Dokumentation, wie man auf AWS, GCP und Azure bereitstellt.
 
 ##
 
 ## 💬 Community
-Join the conversation around PrivateGPT on our:
+Tritt der Diskussion um Einfach.PGPT auf unseren Plattformen bei:
 - [Twitter (aka X)](https://twitter.com/PrivateGPT_AI)
 - [Discord](https://discord.gg/bK6mRVpErU)
 
-## 📖 Citation
-If you use PrivateGPT in a paper, check out the [Citation file](CITATION.cff) for the correct citation.  
-You can also use the "Cite this repository" button in this repo to get the citation in different formats.
+## 📖 Zitation
+Wenn du Einfach.PGPT in einer Publikation verwendest, schau dir die [Zitationsdatei](CITATION.cff) für die korrekte Zitation an.  
+Du kannst auch den Button "Dieses Repository zitieren" in diesem Repo verwenden, um die Zitation in verschiedenen Formaten zu erhalten.
 
-Here are a couple of examples:
+Hier sind ein paar Beispiele:
 
 #### BibTeX
 ```bibtex
@@ -159,11 +111,11 @@ Here are a couple of examples:
 author = {Martínez Toro, Iván and Gallego Vico, Daniel and Orgaz, Pablo},
 license = {Apache-2.0},
 month = may,
-title = {{PrivateGPT}},
+title = {{Einfach.PGPT}},
 url = {https://github.com/imartinez/privateGPT},
 year = {2023}
 }
-```
+
 
 #### APA
 ```
