@@ -22,7 +22,6 @@ Zusätzlich dazu wird ein funktionierender [Gradio UI](https://www.gradio.app/) 
 > [Lass es uns wissen](https://forms.gle/4cSDmH13RZBHV9at7) und wir werden versuchen zu helfen! Wir verfeinern Einfach.PGPT durch dein Feedback.
 
 ## 🎞️ Überblick
-HAFTUNGSAUSSCHLUSS: Diese README wird nicht so häufig aktualisiert wie die [Dokumentation](https://docs.privategpt.dev/). Bitte schaue dort nach den neuesten Updates!
 
 ### Motivation hinter Einfach.PGPT
 Generative KI ist ein Game-Changer für unsere Gesellschaft, aber die Einführung in Unternehmen aller Größen und datensensiblen Bereichen wie Gesundheitswesen oder Recht ist durch eine klare Sorge begrenzt: **Privatsphäre**. Nicht sicherstellen zu können, dass deine Daten vollständig unter deiner Kontrolle sind, wenn du KI-Tools von Drittanbietern verwendest, ist ein Risiko, das diese Branchen nicht eingehen können.
