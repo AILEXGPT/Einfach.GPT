@@ -1,10 +1,6 @@
 # 🔒 Einfach.PGPT 📑
 
 > Installations- und Nutzungsdokumentation: https://docs.privategpt.dev/
-> 
-> Tritt der Community bei: [Twitter](https://twitter.com/PrivateGPT_AI) & [Discord](https://discord.gg/bK6mRVpErU)
-
-![Demo](https://lh3.googleusercontent.com/drive-viewer/AK7aPaBasLxbp49Hrwnmi_Ctii1oIM18nFJrBO0ERSE3wpkS-syjiQBE32_tUSdqnjn6etUDjUSkdJeFa8acqRb0lZbkZ6CyAw=s1600)
 
 Einfach.PGPT ist ein produktionsbereites KI-Projekt, das es dir ermöglicht, Fragen zu deinen Dokumenten mithilfe der Kraft von Großen Sprachmodellen (LLMs) zu stellen, auch in Szenarien ohne Internetverbindung. 100% privat, keine Daten verlassen deine Ausführungsumgebung zu irgendeinem Zeitpunkt.
 
